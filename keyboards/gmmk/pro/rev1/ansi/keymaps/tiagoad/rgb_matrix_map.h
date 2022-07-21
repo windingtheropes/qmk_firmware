@@ -14,6 +14,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
+#ifdef RGB_MATRIX_ENABLE
+
 // RGB LED locations
 enum led_location_map {
     LED_ESC, // 0, ESC, k13
@@ -136,3 +139,5 @@ const uint8_t LED_SIDE_LEFT[] = { LED_L1, LED_L2, LED_L3, LED_L4, LED_L5, LED_L6
 const uint8_t LED_SIDE_RIGHT[] = { LED_R1, LED_R2, LED_R3, LED_R4, LED_R5, LED_R6, LED_R7, LED_R8 };
 
 const uint8_t LED_LIST_LETTERS[] = { LED_A, LED_B, LED_C, LED_D, LED_E, LED_F, LED_G, LED_H, LED_I, LED_J, LED_K, LED_L, LED_M, LED_N, LED_O, LED_P, LED_Q, LED_R, LED_S, LED_T, LED_U, LED_V, LED_W, LED_X, LED_Y, LED_Z };
+
+#endif
