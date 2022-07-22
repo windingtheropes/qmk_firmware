@@ -45,6 +45,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 // clang-format on
 
+bool intercept = false;
+
 void keyboard_post_init_user(void) {
     // Turn off RGB saving and set the RGB mode to none
     rgb_matrix_set_flags(LED_FLAG_NONE);
@@ -69,7 +71,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         response[1] = keycode;
         raw_hid_send(response, RAW_EPSIZE);
     }
-    return true;
+    return !intercept; // if intercept is true, return false
 }
 
 void raw_hid_receive(uint8_t *data, uint8_t length) {
@@ -125,6 +127,17 @@ void raw_hid_receive(uint8_t *data, uint8_t length) {
                 unregister_code(data[2]);
             }
             break;
+        case 6:
+            // intercept mode: 0 is off 1 is on
+            // [6, 0]
+            // [5, on/off]
+            if(data[1] == 0)
+            {
+                intercept = false;
+            }
+            else {
+                intercept = true;
+            }
     }
 }
 
