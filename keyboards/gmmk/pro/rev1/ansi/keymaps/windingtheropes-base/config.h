@@ -1,5 +1,4 @@
 #pragma once
-#define TAPPING_TOGGLE 2
 
 // polling rate config
 #define USB_POLLING_INTERVAL_MS 1
